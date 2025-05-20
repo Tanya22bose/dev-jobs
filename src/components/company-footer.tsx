@@ -4,12 +4,12 @@ import { Link } from "@tanstack/react-router";
 
 export const CompanyFooter = ({ position, company, apply }: any) => {
   return (
-    <Card className="w-1/2 h-[6rem] z-0 flex-row justify-between ">
-      <div className="flex flex-col mt-0">
+    <Card className="w-[90%] xl:w-[58%] h-[6rem] z-0 md:flex-row sm:flex-col justify-between ">
+      <div className="md:flex flex-col mt-0 hidden">
         <CardTitle className="m-0 text-xl font-bold">{position}</CardTitle>
         <CardDescription className="mt-0 text-base">{company}</CardDescription>
       </div>
-      <Button className="">
+      <Button className="sm:w-full md:w-auto">
         <Link to={apply} target="_blank">
           Apply Now
         </Link>

@@ -19,9 +19,9 @@ export const CompanyDetails = ({
   role,
 }: any) => {
   return (
-    <div className="w-1/2 h-full z-0 items-center flex-row mt-32 p-4 px-5 rounded bg-white dark:bg-card">
+    <div className="sm:w-[100%] lg:w-[80%] xl:w-[58%] h-full z-0 items-center flex-row md:mt-32 mt-[15rem] p-4 px-5 rounded bg-white dark:bg-card">
       <Card className="w-full flex flex-col bg-inherit items-center justify-between">
-        <CardHeader className="flex w-full flex-row items-center gap-0 justify-between">
+        <CardHeader className="flex w-full flex-col md:flex-row md:items-center gap-0 justify-between">
           <div className="flex flex-1 flex-col gap-2">
             <CardDescription className="text-base flex items-center">
               {postedAt} &nbsp;
@@ -33,8 +33,8 @@ export const CompanyDetails = ({
               {location}
             </CardDescription>
           </div>
-          <CardDescription className="">
-            <Button className="">
+          <CardDescription className="mt-10 w-full md:mt-0 md:w-auto">
+            <Button className="w-full md:w-auto">
               <Link to={apply} target="_blank">
                 Apply Now
               </Link>

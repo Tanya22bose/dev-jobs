@@ -6,6 +6,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Link } from "@tanstack/react-router";
+const fallbackUrl =
+  "https://i0.wp.com/innovationyourself.com/wp-content/uploads/2020/08/simplifying-controllers-action-fallback.png?fit=700%2C400&ssl=1";
 
 export function JobCard({ job }: any) {
   return (
@@ -13,7 +15,11 @@ export function JobCard({ job }: any) {
       <CardHeader>
         <img
           src={job.logo}
+          loading="lazy"
           alt={`${job.company} logo`}
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).src = fallbackUrl;
+          }}
           className="w-12 h-12 z-2 absolute -top-4 left-8 cursor-pointer object-cover bg-red rounded-xl"
         />
         <CardDescription className="mt-6 text-base flex items-center">

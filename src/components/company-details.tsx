@@ -41,7 +41,7 @@ export const CompanyDetails = ({
             </Button>
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-col gap-4 mt-5">
+        <CardContent className="flex flex-col gap-4 w-full mt-5">
           <CardDescription>
             <div className="text-base">{description}</div>
           </CardDescription>

@@ -5,14 +5,8 @@ import { Switch } from "./ui/switch";
 export function ToggleTheme() {
   const { setTheme, theme } = useTheme();
 
-  const toggleSwitch = ({
-    nativeEvent: {
-      srcElement: {
-        dataset: { state },
-      },
-    },
-  }: never) => {
-    state === "unchecked" ? setTheme("dark") : setTheme("light");
+  const toggleSwitch = (val: never) => {
+    val ? setTheme("dark") : setTheme("light");
   };
 
   return (
@@ -21,7 +15,7 @@ export function ToggleTheme() {
       <Switch
         id="theme-switch"
         checked={theme === "dark"}
-        onClick={(e) => toggleSwitch(e as never)}
+        onCheckedChange={(e) => toggleSwitch(e as never)}
       />
       <Moon className="h-5 w-5" fill="white" />
     </div>

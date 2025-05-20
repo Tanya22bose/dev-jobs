@@ -1,8 +1,8 @@
+import { useCallback, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/navbar";
 import { JobCard } from "@/components/job-card";
 import { Filters } from "@/components/filters";
-import { useState } from "react";
 import { data as allJobs } from "@/mock-data/jobs";
 import { filterMatchingJobs } from "@/lib/utils";
 
@@ -10,20 +10,37 @@ export const Route = createFileRoute("/")({
   component: App,
 });
 
+const LoadMore = ({ handleLoadMore }: any) => (
+  <div className="flex justify-center mb-8">
+    <button
+      onClick={handleLoadMore}
+      className="px-6 py-2 bg-[#5964E0] text-white rounded hover:bg-[#4953c7] transition"
+    >
+      Load More
+    </button>
+  </div>
+);
+
 function App() {
   const [jobs, setJobs] = useState(allJobs);
   const [searchText, setSearchText] = useState("");
   const [location, setLocation] = useState("");
   const [fullTimeOnly, setFullTimeOnly] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(6); // Show initial 6 jobs
+  const [visibleCount, setVisibleCount] = useState(6);
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     const filtered = allJobs.filter((job) =>
       filterMatchingJobs(job, searchText, location, fullTimeOnly)
     );
     setJobs(filtered);
     setVisibleCount(6);
-  };
+  }, [searchText, location, fullTimeOnly]);
+
+  // Stable debounced version
+  const debouncedSearch = useMemo(
+    () => debounce(handleSearch, 300),
+    [handleSearch]
+  );
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 6);
@@ -36,12 +53,12 @@ function App() {
       <Navbar>
         <Filters
           searchText={searchText}
-          setSearchText={setSearchText}
+          setSearchText={(val) => setSearchText(val)}
           location={location}
-          setLocation={setLocation}
+          setLocation={(val) => setLocation(val)}
           fullTimeOnly={fullTimeOnly}
-          setFullTimeOnly={setFullTimeOnly}
-          onSearch={handleSearch}
+          setFullTimeOnly={(val) => setFullTimeOnly(val)}
+          onSearch={() => debouncedSearch()}
         />
       </Navbar>
 
@@ -52,14 +69,7 @@ function App() {
       </div>
 
       {visibleCount < jobs.length && (
-        <div className="flex justify-center mb-8">
-          <button
-            onClick={handleLoadMore}
-            className="px-6 py-2 bg-[#5964E0] text-white rounded hover:bg-[#4953c7] transition"
-          >
-            Load More
-          </button>
-        </div>
+        <LoadMore handleLoadMore={handleLoadMore} />
       )}
     </div>
   );

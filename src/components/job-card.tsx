@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Link } from "@tanstack/react-router";
 
-const fallbackUrl =
+export const fallbackUrl =
   "https://i0.wp.com/innovationyourself.com/wp-content/uploads/2020/08/simplifying-controllers-action-fallback.png?fit=700%2C400&ssl=1";
 
 export function JobCard({ job }: any) {

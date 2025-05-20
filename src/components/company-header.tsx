@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import { Link } from "@tanstack/react-router";
+import { fallbackUrl } from "./job-card";
 
 export const CompanyHeader = ({ logo, company, website }: any) => {
   const MobileView = (
@@ -17,6 +18,9 @@ export const CompanyHeader = ({ logo, company, website }: any) => {
           src={logo}
           alt={`${company} logo`}
           className="w-14 h-14 object-cover rounded-xl"
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).src = fallbackUrl;
+          }}
         />
       </div>
 
@@ -47,6 +51,9 @@ export const CompanyHeader = ({ logo, company, website }: any) => {
             src={logo}
             alt="company-logo"
             className="w-36 h-36 px-0 mt-2 cursor-pointer"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = fallbackUrl;
+            }}
           />
         </CardHeader>
         <CardContent className="w-full flex-2 pb-2">

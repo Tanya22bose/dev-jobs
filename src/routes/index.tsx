@@ -4,7 +4,7 @@ import { Navbar } from "@/components/navbar";
 import { JobCard } from "@/components/job-card";
 import { Filters } from "@/components/filters";
 import { data as allJobs } from "@/mock-data/jobs";
-import { filterMatchingJobs } from "@/lib/utils";
+import { debounce, filterMatchingJobs } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   component: App,

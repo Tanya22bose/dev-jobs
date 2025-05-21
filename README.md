@@ -12,7 +12,7 @@ A responsive, pixel-perfect job listing application built with **React**, **Vite
 - **TanStack Router** – Type-safe routing and file-based structure
 - **TypeScript** – Safer development
 - **Lucide Icons** – Icon set for UI elements
-- **Mock API** – Static `data.json` simulating job listings
+- **Mock Data** – Static `jobs.ts` simulating job listings
 
 ---
 

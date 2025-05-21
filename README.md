@@ -45,15 +45,8 @@ src/
    cd devjobs-web-app
 2. Install dependencies
    npm install
-
-# or
-
-yarn 3. Run the development server
-npm run dev
-
-# or
-
-yarn dev
+3. Run the development server
+   npm run dev
 Open your browser at http://localhost:5173
 
 🛠️ Build for Production
